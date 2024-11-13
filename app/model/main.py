@@ -3,6 +3,7 @@ import mlflow
 from fastapi import FastAPI
 from pydantic import BaseModel
 from mlflow import MlflowClient
+import uvicorn 
 
 
 # MLflow settings
@@ -73,3 +74,6 @@ def predict_endpoint(input_data: InputData):
     return {
         "prediction": float(result)
     }
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", port=8000, log_level="info")
